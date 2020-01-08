@@ -1,0 +1,11 @@
+{
+  "name": "file-utils",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Ljubomir Simin <ljubomir@coingcs.com>",
+  "license": "MIT",
+  "dependencies": {
+    "languagedetect": "^2.0.0",
+    "recursive-readdir": "^2.2.2"
+  }
+}
