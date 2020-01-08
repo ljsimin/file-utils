@@ -29,11 +29,3 @@ const recursive = require('recursive-readdir');
   });
   
 })();
-
-function withoutExtension(filename) {
-    return filename.substr(0, filename.lastIndexOf('.')) || filename
-}
-
-function extension(filename) {
-    return filename.substr(filename.lastIndexOf('.') + 1, filename.length) || filename
-}
