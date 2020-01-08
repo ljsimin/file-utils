@@ -8,7 +8,9 @@ const fs = require('fs');
   console.log({files});
 
   files.forEach((file) => {
-    const dirname = (file.substr(0, file.lastIndexOf('.')) || file).replace(/cd[0-9]/gi,'');
+    const dirname = (file.substr(0, file.lastIndexOf('.')) || file)
+      .replace(/cd[0-9]/gi,'')
+      .replace(/\.+$/, '');
     console.log(file, dirname);
 
     if (!fs.existsSync(dirname)) {
