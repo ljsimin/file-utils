@@ -47,7 +47,7 @@ function language(filename, text) {
     }
     
     function byContent(filename, text) {
-        if (text.includes('ę')) {
+        if (text.includes('ó')) {
             return 'polish'
         }
 
