@@ -25,6 +25,8 @@ const langMap = {
 
           console.log(file + ' -> ' + newName);
           fs.renameSync(file, newName);
+      } else {
+          console.log(`no language for ${file}`)
       }
   });
   
