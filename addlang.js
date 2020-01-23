@@ -18,7 +18,15 @@ const langMap = {
     .filter(file => !file.includes('.sr.'))
 
   files.forEach(file => {
-      const lang = langMap[language(file, fs.readFileSync(file, 'utf-8'))];
+      let content;
+      try {
+        content = fs.readFileSync(file, 'utf-8');
+      } catch(e) {
+        console.log(`Can't parse: ${file}`)
+      
+        return;
+      }
+      const lang = langMap[language(file, content)];
       if (lang) {
           const ext = extension(file);
           const newName = `${withoutExtension(file)}[addlang.js].${lang}.${ext}`;

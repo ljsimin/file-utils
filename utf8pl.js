@@ -7,7 +7,14 @@ const recursive = require('recursive-readdir');
     .filter(file => file.includes('.txt') || file.includes('.srt') || file.includes('.sub'))
 
   files.forEach(file => {
-      const utf8 = fs.readFileSync(file, 'utf-8');
+    let utf8;
+    try {
+      utf8 = fs.readFileSync(file, 'utf-8');
+    } catch (e) {
+      console.log(`Can't parse: ${file}`)
+      
+      return;
+    }
 
 //(³)|(ê)|(¿)|(æ)|(¹)|(œ)|(ñ)|(Ÿ)
 //(?1ł)(?2ę)(?3ż)(?4ć)(?5ą)(?6ś)(?7ń)(?8ź)
