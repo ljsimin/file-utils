@@ -1,7 +1,9 @@
 const fs = require('fs');
 const recursive = require('recursive-readdir');
 const LanguageDetect = require('languagedetect');
-const { isTextSync } = require('istextorbinary');
+
+const previewLength = 0x2000;
+const maxSize = 0x4000000; // 64mb
 
 const langMap = {
     'english': 'en',
@@ -17,10 +19,10 @@ const langMap = {
     .filter(file => !file.includes('.en.'))
     .filter(file => !file.includes('.sr.'))
     .filter(file => !file.includes('.pl.'))
-    .filter(file => isTextSync(file))
 
   files.forEach(file => {
-      const content = fs.readFileSync(file).toString('utf-8', 0, 0x100000);
+      if (fs.statSync(file).size > maxSize) return;
+      const content = fs.readFileSync(file).toString('utf-8', 0, previewLength);
      
       const lang = langMap[language(file, content)];
       if (lang) {
