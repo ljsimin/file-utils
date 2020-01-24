@@ -14,8 +14,8 @@ const langMap = {
   const files = (await recursive('.'))
     .filter(file => file.includes('.txt') || file.includes('.srt') || file.includes('.sub'))
     .filter(file => !file.includes('.en.'))
-    .filter(file => !file.includes('.pl.'))
     .filter(file => !file.includes('.sr.'))
+    .filter(file => !file.includes('.pl.'))
 
   files.forEach(file => {
       let content;
