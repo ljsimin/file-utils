@@ -1,6 +1,7 @@
 const fs = require('fs');
 const recursive = require('recursive-readdir');
 const LanguageDetect = require('languagedetect');
+const { isTextSync } = require('istextorbinary');
 
 const langMap = {
     'english': 'en',
@@ -16,16 +17,11 @@ const langMap = {
     .filter(file => !file.includes('.en.'))
     .filter(file => !file.includes('.sr.'))
     .filter(file => !file.includes('.pl.'))
+    .filter(file => isTextSync(file))
 
   files.forEach(file => {
-      let content;
-      try {
-        content = fs.readFileSync(file, 'utf-8');
-      } catch(e) {
-        console.log(`Can't parse: ${file}`)
-      
-        return;
-      }
+      const content = fs.readFileSync(file).toString('utf-8', 0, 0x100000);
+     
       const lang = langMap[language(file, content)];
       if (lang) {
           const ext = extension(file);
